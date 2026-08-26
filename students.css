@@ -1,0 +1,289 @@
+/* ============================================================================
+   RESCUEPRIORITY — STUDENTS & SECTIONS (Attendance/Accountability module)
+   Additive stylesheet. Reuses design tokens defined in style.css (:root).
+   Loaded alongside style.css / analytics.css — does not override either.
+   ============================================================================ */
+
+/* ---------- Sub-tabs (Students / Sections) ---------- */
+.students-subtabs {
+    display: flex;
+    gap: 0.5rem;
+    margin: 1rem 0 1.25rem;
+}
+
+.students-subtab-btn {
+    padding: 0.5rem 1rem;
+    border-radius: var(--radius-pill);
+    border: 1px solid var(--border-color);
+    background: var(--bg-card);
+    color: var(--text-secondary);
+    font-family: var(--font-sans);
+    font-size: 0.8rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.15s, color 0.15s, border-color 0.15s;
+}
+
+.students-subtab-btn:hover { background: var(--accent-pink-lightest); }
+
+.students-subtab-btn.active {
+    background: var(--accent-pink-dark);
+    border-color: var(--accent-pink-dark);
+    color: #fff;
+}
+
+.students-subpanel.hidden { display: none; }
+
+/* ---------- Toolbar (search + add button) ---------- */
+.students-toolbar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+}
+
+.students-search-input {
+    flex: 1;
+    min-width: 200px;
+    max-width: 340px;
+    padding: 0.55rem 0.8rem;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-card-sm);
+    font-family: var(--font-sans);
+    font-size: 0.8rem;
+    color: var(--text-primary);
+    background: var(--bg-card);
+}
+
+.students-search-input:focus { outline: 2px solid var(--accent-pink-soft); border-color: var(--accent-pink); }
+
+.btn-add-entity {
+    padding: 0.6rem 1.1rem;
+    border: none;
+    border-radius: var(--radius-card-sm);
+    background: var(--accent-pink-dark);
+    color: #fff;
+    font-family: var(--font-sans);
+    font-size: 0.8rem;
+    font-weight: 700;
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+.btn-add-entity:hover { background: var(--primary-dark); }
+
+/* ---------- Table ---------- */
+.data-table-wrap {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-card);
+    box-shadow: var(--card-shadow);
+    overflow-x: auto;
+}
+
+table.data-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: var(--font-sans);
+    font-size: 0.8rem;
+    min-width: 640px;
+}
+
+table.data-table thead th {
+    text-align: left;
+    padding: 0.75rem 1rem;
+    background: var(--bg-panel);
+    color: var(--text-secondary);
+    font-weight: 700;
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    border-bottom: 1px solid var(--border-color);
+    white-space: nowrap;
+}
+
+table.data-table tbody td {
+    padding: 0.7rem 1rem;
+    border-bottom: 1px solid var(--border-subtle);
+    color: var(--text-primary);
+    vertical-align: middle;
+}
+
+table.data-table tbody tr:last-child td { border-bottom: none; }
+table.data-table tbody tr:hover { background: var(--accent-pink-lightest); }
+
+.data-table-empty {
+    padding: 2rem 1rem;
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 0.8rem;
+}
+
+.table-row-actions { display: flex; gap: 0.4rem; white-space: nowrap; }
+
+/* Sections table rows double as a "View" trigger for the Section Detail
+   modal below; hover feedback already comes from the existing
+   `table.data-table tbody tr:hover` rule above. */
+.row-clickable { cursor: pointer; }
+
+.icon-btn {
+    padding: 0.35rem 0.6rem;
+    border-radius: var(--radius-card-sm);
+    border: 1px solid var(--border-color);
+    background: var(--bg-card);
+    color: var(--text-secondary);
+    font-size: 0.7rem;
+    font-weight: 700;
+    cursor: pointer;
+    font-family: var(--font-sans);
+}
+
+.icon-btn:hover { background: var(--accent-pink-lightest); color: var(--accent-pink-dark); border-color: var(--accent-pink); }
+.icon-btn.icon-btn-danger:hover { background: var(--status-emergency-light); color: var(--status-emergency); border-color: var(--status-emergency); }
+
+.pill-tag {
+    display: inline-block;
+    padding: 0.2rem 0.55rem;
+    border-radius: var(--radius-pill);
+    background: var(--accent-mauve-light);
+    color: var(--accent-mauve);
+    font-size: 0.7rem;
+    font-weight: 700;
+}
+
+/* ---------- Form (inside modal-card, reuses .modal-overlay/.modal-card/.modal-header/.modal-actions) ---------- */
+.entity-form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.85rem;
+    margin: 1rem 0;
+}
+
+.entity-form-grid .field-full { grid-column: 1 / -1; }
+
+.field-group { display: flex; flex-direction: column; gap: 0.3rem; }
+
+.field-group label {
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: var(--text-secondary);
+}
+
+.field-group input,
+.field-group select {
+    padding: 0.55rem 0.7rem;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-card-sm);
+    font-family: var(--font-sans);
+    font-size: 0.82rem;
+    color: var(--text-primary);
+    background: var(--bg-card);
+}
+
+.field-group input:focus,
+.field-group select:focus { outline: 2px solid var(--accent-pink-soft); border-color: var(--accent-pink); }
+
+.field-error {
+    font-size: 0.7rem;
+    color: var(--status-emergency);
+    min-height: 0.9em;
+}
+
+.form-general-error {
+    background: var(--status-emergency-light);
+    color: var(--status-emergency);
+    border-radius: var(--radius-card-sm);
+    padding: 0.6rem 0.8rem;
+    font-size: 0.78rem;
+    font-weight: 600;
+    margin-top: 0.25rem;
+}
+
+.form-general-error.hidden { display: none; }
+
+/* ---------- QR modal ---------- */
+.qr-modal-student-name { font-size: 0.9rem; font-weight: 700; color: var(--text-primary); text-align: center; }
+.qr-modal-student-lrn { font-size: 0.78rem; color: var(--text-secondary); text-align: center; margin-top: 0.15rem; margin-bottom: 1rem; }
+
+.qr-canvas-frame {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 280px;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-card);
+    background: var(--bg-panel);
+    padding: 1rem;
+}
+
+/* !important here because window.QRCode.toCanvas() (students.js) sets its
+   own inline width/height style on the <canvas> it draws into, and inline
+   styles otherwise beat any plain stylesheet rule. students.js also clears
+   that inline style right after generation as a belt-and-suspenders fix,
+   but this rule is what actually keeps the QR a small, padded, centered
+   square regardless of how it got rendered. */
+.qr-canvas-frame canvas,
+.qr-canvas-frame img {
+    width: 240px !important;
+    height: 240px !important;
+    max-width: 100%;
+}
+
+.qr-canvas-frame .qr-status-text { font-size: 0.8rem; color: var(--text-muted); }
+
+/* ---------- Section Detail modal ---------- */
+.section-detail-subtitle {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    margin-top: -0.65rem;
+}
+
+.section-detail-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    max-height: 320px;
+    overflow-y: auto;
+}
+
+.section-detail-student {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+    padding: 0.55rem 0.75rem;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-card-sm);
+    background: var(--bg-panel);
+}
+
+.section-detail-student-name {
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.status-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+.status-dot-present { background: var(--status-safe); box-shadow: 0 0 0 2px var(--status-safe-light); }
+.status-dot-absent { background: var(--status-emergency); box-shadow: 0 0 0 2px var(--status-emergency-light); }
+
+.section-detail-empty {
+    font-size: 0.82rem;
+    color: var(--text-muted);
+    text-align: center;
+    padding: 1rem 0;
+}
+
+@media (max-width: 640px) {
+    .entity-form-grid { grid-template-columns: 1fr; }
+}
